@@ -1,3 +1,5 @@
+import { badRequest } from "../../../helpers/http/http-helper.js"
+
 class AddOrderController {
   constructor(validation, addOrder) {
     this.validation = validation
@@ -5,7 +7,12 @@ class AddOrderController {
   }
 
   async handle(httpRequest) {
-    return null
+    const err = this.validation.validate(httpRequest.body)
+
+    if (err) {
+      return badRequest(err)
+    }
+
   }
 }
 
