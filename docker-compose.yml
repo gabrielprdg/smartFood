@@ -5,7 +5,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=ng-cash
+      - POSTGRES_DB=smart-food
     ports:
       - 5454:5432
     # create a volumes to persist data 
@@ -13,11 +13,9 @@ services:
       - pg_data:/var/lib/postgres/data
   app:
     build: .
-    container_name: ng_cash_app
+    container_name: smart-food
     restart: always
-    command: node dist/main/server.js
-    volumes:
-      - ./dist:/usr/src/ng-cash/dist
+    command: node src/main/app.js
     ports:
       - 8084:8084
     environment:
@@ -25,9 +23,8 @@ services:
       - DB_PORT=5432
       - DB_USER=postgres
       - DB_PASSWORD=postgres
-      - DB_NAME=ng-cash
+      - DB_NAME=smart-food
       - PORT=8084
-      - JWT_SECRET=sfgsertw3rgwefgsetyq3egrf
     depends_on:
       - db
 volumes:
