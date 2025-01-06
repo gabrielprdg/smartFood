@@ -13,8 +13,8 @@ class AddOrderController {
         return badRequest(err)
       }
 
-      const { customerId, status, price, estimatedDate, createdAt } = httpRequest.body
-      await this.addOrder.add({ customerId, status, price, estimatedDate, createdAt })
+      const { customerId, description, status, price, estimatedDate } = httpRequest.body
+      await this.addOrder.add({ customerId, description, status, price, estimatedDate })
       return noContent()
     } catch (err) {
       return serverError(err)
